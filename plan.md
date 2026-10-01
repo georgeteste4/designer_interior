@@ -39,7 +39,7 @@ O produto deve funcionar como uma ferramenta de projeto, não apenas como um vis
 
 - Preservar o app funcional atual.
 - Registrar o estado atual em commit.
-- Manter `i18n.json` como fonte editável de idiomas.
+- Manter `i18n.json` como fonte editável de idiomas, incluindo PT-BR, English, 中文 e 繁體中文.
 - Adicionar este plano e uma rotina de commits incrementais.
 
 ### Fase 1 — fundação do editor profissional

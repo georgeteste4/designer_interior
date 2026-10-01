@@ -1,3 +1,5 @@
+[Português](README.md) · [English](README.en.md)
+
 # Projeto de planta e design de interiores
 
 Ferramenta de design de interiores totalmente frontend: organize móveis em uma planta 2D, faça medições, marque paredes não estruturais para remoção e alterne para uma cena 3D em Three.js com visão em perspectiva ou modo passeio. O aplicativo continua concentrado no `index.html`, sem etapa de build.
@@ -53,7 +55,7 @@ Todas as traduções editáveis ficam em [`i18n.json`](i18n.json). O arquivo def
 - `storageKey`: chave usada para lembrar a preferência no navegador
 - `locales`: idiomas disponíveis, cada um com `label`, `htmlLang`, `strings` e `names`
 
-Os idiomas disponíveis no catálogo são `pt-BR`, `en` e `zh-CN`. Para adicionar outro idioma, copie um bloco em `locales`, altere o código e preencha as mesmas chaves de `strings` e `names`. Chaves ausentes usam o idioma de fallback.
+Os idiomas disponíveis no catálogo são `pt-BR`, `en`, `zh-CN` e `zh-TW` (繁體中文). Para adicionar outro idioma, copie um bloco em `locales`, altere o código e preencha as mesmas chaves de `strings` e `names`. Chaves ausentes usam o idioma de fallback.
 
 Exemplo mínimo:
 
@@ -128,3 +130,7 @@ Os dados da planta ficam no `index.html`:
 - `buildFurniture()`: modelos 3D dos móveis
 
 Altere esses dados para adaptar a ferramenta a outra planta. Mantenha os nomes de dados em `i18n.json` para que a interface continue traduzindo os ambientes, materiais e móveis.
+
+## Licença
+
+Este projeto segue a licença [MIT](LICENSE).
