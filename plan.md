@@ -103,6 +103,12 @@ O produto deve funcionar como uma ferramenta de projeto, não apenas como um vis
 - Sincronização remota e histórico de alterações.
 - Login e backend somente depois de validar o fluxo local-first.
 
+## 3.1 MVP implementado
+
+A entrada principal agora é o Ateliê de Implantação, um web app local-first sem build. O MVP entrega o modelo versionado `schemaVersion: 2`, navegação Loteamento/Lote/Edificação/Ambiente, entidades paramétricas de lotes, vias, áreas verdes, edificações e ambientes, inspector editável, árvore de projeto, métricas, planta, perspectiva axonométrica, cenas salvas, autosave, histórico e importação/exportação JSON. O editor de interiores anterior foi preservado em `legacy.html` para continuidade.
+
+O próximo passo técnico é trocar os retângulos paramétricos por polígonos com snapping e conectar as perspectivas a um renderer Three.js que consuma o mesmo modelo, mantendo a compatibilidade do schema.
+
 ## 4. Arquitetura técnica proposta
 
 ### Estratégia de migração
@@ -213,7 +219,7 @@ floorplan-3d/
 
 ## 7. Política de versionamento do trabalho
 
-- `master` permanece como linha estável do repositório atual.
+- `main` permanece como linha estável do repositório canônico `georgeteste4/designer_interior`.
 - Cada entrega funcional terá um commit com escopo claro, por exemplo:
   - `chore: establish project baseline`
   - `feat: add project context model`
@@ -221,5 +227,5 @@ floorplan-3d/
   - `refactor: extract 2d renderer`
   - `fix: preserve legacy project migration`
 - Nunca fazer force-push nem reescrever histórico.
-- Após cada conjunto validado: commit, `git fetch`, integração segura se necessário e push para `origin/master`.
+- Após cada conjunto validado: commit, `git fetch`, integração segura se necessário e push para `origin/main`.
 - O estado do Git será reportado junto com cada atualização para manter rastreabilidade.
