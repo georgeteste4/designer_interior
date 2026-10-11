@@ -4,6 +4,14 @@
 
 O **Ateliê de Implantação** é uma prancheta visual local-first para explorar loteamentos, lotes, casas e ambientes. O MVP permite criar e editar elementos espaciais em diferentes escalas, alternar entre planta e perspectiva, salvar cenas, desfazer operações e exportar o projeto em JSON.
 
+
+## Áreas de trabalho
+
+- **Editor de interiores (entrada principal `/`)**: editor completo de planta 2D, biblioteca de móveis, medição, camadas, paredes, materiais, exportação, histórico, cena 3D e modo passeio.
+- **Implantação (`/implantacao.html`)**: módulo multi-escala para loteamentos, lotes, vias, áreas verdes, edificações e ambientes, com inspector, cenas, importação/exportação JSON e perspectiva.
+
+A entrada principal preserva a experiência rica do editor original; o módulo de implantação amplia o produto para estudos de terreno e loteamento sem remover o fluxo de interiores.
+
 ## MVP entregue
 
 - **Navegação multi-escala:** Loteamento, Lote, Edificação e Ambiente.

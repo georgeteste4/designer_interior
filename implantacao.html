@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="theme-color" content="#f5f1e8" />
+  <meta name="description" content="Prancheta visual para loteamentos, lotes, casas e ambientes." />
+  <title>Ateliê de Implantação</title>
+  <link rel="stylesheet" href="src/styles.css" />
+</head>
+<body>
+  <div id="app" class="app-shell">
+    <header class="topbar">
+      <div class="brand-mark" aria-label="Ateliê de Implantação"><span class="brand-glyph">◒</span><span><strong>Ateliê</strong><small>implantação & interiores</small></span></div>
+      <div class="project-switcher"><button id="projectMenuBtn" class="ghost-button project-name">Projeto sem nome</button><span id="saveIndicator" class="save-indicator">Salvo neste dispositivo</span></div>
+      <nav class="top-actions" aria-label="Ações do projeto">
+        <button id="undoBtn" class="icon-button" title="Desfazer (Ctrl+Z)" aria-label="Desfazer">↶</button><button id="redoBtn" class="icon-button" title="Refazer (Ctrl+Y)" aria-label="Refazer">↷</button>
+        <button id="newProjectBtn" class="ghost-button">Novo</button><button id="importBtn" class="ghost-button">Importar</button><button id="exportBtn" class="accent-button">Exportar</button>
+        <button id="languageBtn" class="ghost-button">EN</button>
+      </nav>
+    </header>
+    <div class="workspace">
+      <aside class="left-rail">
+        <div class="rail-label">NAVEGAR</div>
+        <button class="context-button active" data-context="site"><span>⌂</span><small>Loteamento</small></button>
+        <button class="context-button" data-context="lot"><span>▧</span><small>Lote</small></button>
+        <button class="context-button" data-context="building"><span>⌂</span><small>Edificação</small></button>
+        <button class="context-button" data-context="room"><span>▦</span><small>Ambiente</small></button>
+        <div class="rail-divider"></div>
+        <button id="libraryBtn" class="context-button"><span>＋</span><small>Biblioteca</small></button>
+        <button id="scenesBtn" class="context-button"><span>◈</span><small>Cenas</small></button>
+        <button id="helpBtn" class="context-button"><span>?</span><small>Ajuda</small></button>
+        <div class="rail-spacer"></div><a class="legacy-link" href="legacy.html">Editor de interiores</a>
+      </aside>
+      <main class="main-workspace">
+        <div class="contextbar"><div><div id="breadcrumbs" class="breadcrumbs"></div><h1 id="workspaceTitle">Implantação do loteamento</h1></div><div class="context-actions"><button id="fitBtn" class="ghost-button">Ajustar vista</button><div class="segmented"><button class="view-button active" data-view="plan">Planta</button><button class="view-button" data-view="perspective">Perspectiva</button></div></div></div>
+        <div id="canvasWrap" class="canvas-wrap"><svg id="canvas" role="application" aria-label="Área de trabalho do projeto"></svg><div id="canvasEmpty" class="canvas-empty hidden"><span>⌘</span><strong>Comece pelo terreno</strong><p>Adicione um lote, uma via ou uma área verde para construir sua implantação.</p><button class="accent-button" data-action="add-lot">Criar primeiro lote</button></div><div id="canvasHint" class="canvas-hint">Arraste elementos para reposicionar · duplo clique para editar</div></div>
+        <footer class="statusbar"><span id="statusText">Selecione um elemento para editar suas propriedades.</span><span class="status-right"><b id="cursorCoords">x — · y —</b><span>Unidade: m</span><span id="zoomText">100%</span></span></footer>
+      </main>
+      <aside class="right-panel"><section class="panel-section project-tree"><div class="section-heading"><span>ESTRUTURA</span><button id="collapseTreeBtn" class="mini-button">−</button></div><div id="tree" class="tree"></div></section><section id="inspectorSection" class="panel-section inspector"></section><section class="panel-section metrics-section"><div class="section-heading"><span>RESUMO DO PROJETO</span></div><div id="metrics" class="metrics"></div></section></aside>
+    </div>
+  </div>
+  <dialog id="projectDialog" class="modal"><form method="dialog" id="projectForm"><div class="modal-head"><div><span class="eyebrow">PROJETO</span><h2 id="projectDialogTitle">Gerenciar projeto</h2></div><button value="cancel" class="close-button" aria-label="Fechar">×</button></div><label>Nome do projeto<input id="projectNameInput" required maxlength="80" /></label><label>Descrição<textarea id="projectDescriptionInput" rows="3" maxlength="240"></textarea></label><div class="modal-actions"><button value="cancel" class="ghost-button">Cancelar</button><button id="projectSaveBtn" value="default" class="accent-button">Salvar projeto</button></div></form></dialog>
+  <dialog id="libraryDialog" class="modal wide-modal"><div class="modal-head"><div><span class="eyebrow">BIBLIOTECA</span><h2>Elementos de implantação</h2></div><button id="libraryCloseBtn" class="close-button" aria-label="Fechar biblioteca">×</button></div><div class="library-cards"><button data-action="add-lot"><b>▧ Lote residencial</b><small>Cria um lote editável com medidas padrão.</small></button><button data-action="add-road"><b>━ Via / acesso</b><small>Adiciona uma faixa de circulação ao plano.</small></button><button data-action="add-green"><b>✦ Área verde</b><small>Adiciona uma área comum ou paisagística.</small></button><button data-action="add-building"><b>⌂ Edificação</b><small>Implanta uma casa dentro do lote selecionado.</small></button></div></dialog>
+  <dialog id="scenesDialog" class="modal wide-modal"><div class="modal-head"><div><span class="eyebrow">APRESENTAÇÃO</span><h2>Cenas salvas</h2></div><button id="scenesCloseBtn" class="close-button" aria-label="Fechar cenas">×</button></div><div id="sceneList" class="scene-list"></div><div class="modal-actions"><button id="saveSceneBtn" class="accent-button">Salvar cena atual</button></div></dialog>
+  <dialog id="helpDialog" class="modal"><div class="modal-head"><div><span class="eyebrow">GUIA RÁPIDO</span><h2>Como usar o Ateliê</h2></div><button id="helpCloseBtn" class="close-button">×</button></div><div class="help-copy"><p><b>1. Navegue por escala.</b> Use Loteamento, Lote, Edificação e Ambiente para manter o projeto organizado.</p><p><b>2. Crie e ajuste.</b> Use a Biblioteca para adicionar elementos; selecione qualquer item para editar nome, posição, dimensões e visibilidade.</p><p><b>3. Apresente.</b> Alterne para Perspectiva, salve cenas e exporte um JSON completo para continuar em outro dispositivo.</p><p><b>Atalhos:</b> Delete remove, Ctrl/Cmd+D duplica, Ctrl/Cmd+Z desfaz e Esc limpa a seleção.</p></div></dialog>
+  <input id="fileInput" type="file" accept="application/json,.json" hidden />
+  <script src="src/app.js"></script>
+</body>
+</html>

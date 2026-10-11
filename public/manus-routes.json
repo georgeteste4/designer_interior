@@ -1,1 +1,16 @@
-{"routes":[{"path":"/","title":"Ateliê de Implantação"},{"path":"/legacy.html","title":"Editor de interiores legado"}]}
+{
+  "routes": [
+    {
+      "path": "/",
+      "title": "Ateliê de Implantação"
+    },
+    {
+      "path": "/legacy.html",
+      "title": "Editor de interiores legado"
+    },
+    {
+      "path": "/implantacao.html",
+      "title": "Implantação"
+    }
+  ]
+}
