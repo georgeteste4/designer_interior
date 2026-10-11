@@ -103,11 +103,11 @@ O produto deve funcionar como uma ferramenta de projeto, não apenas como um vis
 - Sincronização remota e histórico de alterações.
 - Login e backend somente depois de validar o fluxo local-first.
 
-## 3.1 MVP implementado
+## 3.1 Estado atual e decisão de reconstrução
 
-A entrada principal agora é o Ateliê de Implantação, um web app local-first sem build. O MVP entrega o modelo versionado `schemaVersion: 2`, navegação Loteamento/Lote/Edificação/Ambiente, entidades paramétricas de lotes, vias, áreas verdes, edificações e ambientes, inspector editável, árvore de projeto, métricas, planta, perspectiva axonométrica, cenas salvas, autosave, histórico e importação/exportação JSON. O editor de interiores anterior foi preservado em `legacy.html` para continuidade.
+A entrada principal voltou a ser o editor rico de interiores 2D/3D, enquanto o módulo multi-escala está disponível em `/implantacao.html`. A tentativa de substituir o editor original por uma prancheta simplificada foi descartada porque reduziu a qualidade visual e funcional do produto.
 
-O próximo passo técnico é trocar os retângulos paramétricos por polígonos com snapping e conectar as perspectivas a um renderer Three.js que consuma o mesmo modelo, mantendo a compatibilidade do schema.
+A reconstrução será incremental e integrada: o editor original será a base técnica, o módulo de implantação será absorvido pelo mesmo shell e ambos passarão a consumir um único modelo de projeto. O plano operacional detalhado está em [`reconstruction-plan.md`](reconstruction-plan.md).
 
 ## 4. Arquitetura técnica proposta
 
